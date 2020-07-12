@@ -1,0 +1,38 @@
+.m-single-panel {
+    .pa;
+    .rt(24px, 30px);
+    .x(right);
+    .u-minigroup {
+        .mb(20px);
+    }
+    .u-fn {
+        .ml(15px);
+        &:first-child {
+            .ml(0);
+        }
+    }
+    .u-admin{
+        .none;
+    }
+}
+
+@media screen and (max-width: @phone) {
+    .m-single-panel {
+        .ps;
+        .x;
+        border: 1px dashed #ddd;
+        background-color: @bg-light;
+        padding: 10px;
+        .r(3px);
+        .mb(10px);
+
+        .u-admin{
+            .dbi;
+        }
+    }
+}
+@media print {
+    .m-single-panel {
+        .none;
+    }
+}
