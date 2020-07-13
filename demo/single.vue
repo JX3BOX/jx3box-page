@@ -9,7 +9,7 @@
             :adminEnable="true"
             :feedbackEnable="true"
         >
-            <img slot="logo" svg-inline src="./assets/img/logo.svg" />
+            <img slot="logo" svg-inline src="../src/assets/img/logo.svg" />
         </Breadcrumb>
         <LeftSidebar>
             <Nav />
@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import Single from "./Single.vue";
-import { getPost } from "./service/post";
-import { getStat, postStat } from "./service/stat.js";
+import Single from "../src/cms-single.vue";
+import { getPost } from "../src/service/post";
+import { getStat, postStat } from "../src/service/stat.js";
 import { getRewrite } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "App",

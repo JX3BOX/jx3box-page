@@ -19,10 +19,10 @@ Vue.use(JX3BOX_UI);
 // import router from "./router";
 // import store from "./store";
 
-import App from "./App.vue";
+import single from "./single.vue";
 new Vue({
     // router,
     // store,
-    render: h => h(App),
+    render: h => h(single),
 }).$mount("#app");
 

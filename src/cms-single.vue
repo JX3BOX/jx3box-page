@@ -86,5 +86,5 @@ export default {
 </script>
 
 <style lang="less">
-@import "./assets/css/single.less";
+@import "./assets/css/cms-single.less";
 </style>

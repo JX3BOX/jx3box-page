@@ -37,5 +37,5 @@
 </script>
 
 <style scoped lang="less">
-    @import '../assets/css/panel.less';
+    @import '../assets/css/single-panel.less';
 </style>
