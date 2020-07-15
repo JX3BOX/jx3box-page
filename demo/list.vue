@@ -15,7 +15,18 @@
             <Nav />
         </LeftSidebar>
         <Main :withoutRight="false">
-            <List />
+            <!-- <List
+                type="fb"
+                :searchEnable="true"
+                :filterEnable="true"
+                :_loading="loading"
+                :_data="data"
+                :_total="total"
+                :_pages="pages"
+                @changePage="loadData(i)"
+                @appendPage="loadData(i,true)"
+                @filterMark="loadData()"
+            /> -->
             <RightSidebar></RightSidebar>
             <Footer></Footer>
         </Main>
@@ -25,21 +36,57 @@
 <script>
 import List from "../src/cms-list.vue";
 import { getPosts } from "../src/service/post";
-import { getRewrite } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "App",
     props: [],
-    data: function () {
+    data: function() {
         return {
-            loading : false
+            data : [],
         };
     },
-    computed: {},
-    methods: {},
-    created: function () {
+    computed: {
+        subtype: function() {
+            return this.$store.state.subtype;
+        },
+        params: function() {
+            let params = {
+                per: this.per,
+                subtype: this.subtype,
+            };
+            if (this.search) {
+                params[this.searchType] = this.search;
+            }
+            if (this.order) {
+                params.order = this.order;
+            }
+            if (this.mark) {
+                params.mark = this.mark;
+            }
+            return params;
+        },
     },
+    methods: {
+        loadData: function(i = 1, append = false) {
+            this.loading = true;
+            getPosts(query)
+                .then((res) => {
+                    if (append) {
+                        this.data = this.data.concat(res.data.data.list);
+                    } else {
+                        window.scrollTo(0, 0);
+                        this.data = res.data.data.list;
+                    }
+                    this.total = res.data.data.total;
+                    this.pages = res.data.data.pages;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+        },
+    },
+    created: function() {},
     components: {
-        List,
+        // List,
     },
 };
 </script>
