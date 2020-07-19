@@ -26,9 +26,9 @@
         </div>
 
         <!-- 评论 -->
-        <div class="m-single-comment">
+        <div class="m-single-comment" v-if="id">
             <el-divider content-position="left">评论</el-divider>
-            <Comment :post-id="id" v-if="id"/>
+            <Comment :post-id="id"/>
         </div>
 
         <!-- 底部 -->
@@ -62,7 +62,7 @@ export default {
             return _.get(this.post,'post_content') || ''
         },
         id : function (){
-            return _.get(this.post, "ID") || ''
+            return ~~_.get(this.post, "ID") || 0
         },
     },
     watch : {
