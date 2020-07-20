@@ -1,9 +1,66 @@
-@import './list-filter.less';
-@import './list-search.less';
+// 排序
+.m-archive-filter {
+    .fz(12px);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    .clearfix;
+    border-bottom: 1px solid #eee;
+    .u-publish {
+        .fl;
+        .h(32px);
+        .mr(10px);
+        .ml(0);
+    }
+    .w-filter-mark,.w-filter-tag{
+        .fl;
+        margin-top:8px;
+    }
 
-// 列表
+    .w-filter-order{
+        .fr;
+        margin-top:8px;
+    }
+}
+@media screen and (max-width: @ipad) {
+    .m-archive-filter {
+        .u-publish {
+            .mr(10px);
+        }
+        .w-filter-mark,.w-filter-tag,.w-filter-order{
+            margin-top:0;
+        }
+        .w-filter-mark,.w-filter-tag{
+            .mr(10px);
+        }
+    }
+}
+@media screen and (max-width: @phone) {
+    .m-archive-filter {
+        .none;
+    }
+}
+// 为空
+.m-archive-null {
+    margin-top: 10px;
+}
+
+// 加载更多
+.m-archive-more {
+    .mb(10px);
+    .w(100%);
+    .none;
+}
+.m-archive-more.show {
+    .db;
+}
+
+// 分页
+.m-archive-pages {
+    overflow-x: auto;
+}
+
+// 普通列表
 .m-archive-list {
-    .mt(20px);
     .u-list {
         padding: 0;
         margin: 0;
@@ -39,7 +96,7 @@
         transition: 0.06s border ease-in-out;
         &:hover {
             img {
-                filter: saturate(140%);
+                filter: saturate(140%) brightness(120%);
             }
             border-color: @border;
         }
@@ -107,7 +164,6 @@
         .break(2);
         .mb(6px);
         padding: 0 2px;
-        white-space: pre-wrap;
     }
 
     // 内容·meta列表
@@ -251,23 +307,4 @@
             color: #555;
         }
     }
-}
-// 为空
-.m-archive-null {
-    margin-top: 10px;
-}
-
-// 加载更多
-.m-archive-more {
-    .mb(10px);
-    .w(100%);
-    .none;
-}
-.m-archive-more.show {
-    .db;
-}
-
-// 分页
-.m-archive-pages {
-    overflow-x: auto;
 }
