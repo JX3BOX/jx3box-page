@@ -3,7 +3,7 @@
         <!-- 搜索靠前 -->
         <slot name="search-before"></slot>
         <!-- 筛选 -->
-        <div class="m-archive-filter">
+        <div class="m-archive-filter" v-if="$slots.filter">
             <slot name="filter"></slot>
         </div>
         <!-- 搜索靠后 -->
