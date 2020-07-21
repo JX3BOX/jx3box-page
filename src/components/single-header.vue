@@ -3,7 +3,7 @@
 
         <!-- 标题 -->
         <div class="m-single-title">
-            <a class="u-title u-sub-block" :href="url">
+            <a class="u-title u-sub-block" :href="url" :title="title">
                 <i v-if="isOriginal" class="u-original">原创</i> 
                 <img v-if="isPrivate" class="u-private" svg-inline src="../assets/img/single/lock.svg" title="仅自己可见"/>
                 <span class="u-title-text">{{ title }}</span>
