@@ -28,7 +28,7 @@
         <!-- 评论 -->
         <div class="m-single-comment" v-if="id">
             <el-divider content-position="left">评论</el-divider>
-            <Comment :post-id="id"/>
+            <Comment :id="id" category="post"/>
         </div>
 
         <!-- 底部 -->
