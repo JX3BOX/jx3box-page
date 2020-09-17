@@ -1,6 +1,6 @@
 {
   "name": "@jx3box/jx3box-page",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,7 +10,7 @@
   "dependencies": {
     "@jx3box/jx3box-comment-ui": "^1.2.8",
     "@jx3box/jx3box-common": "^5.0.9",
-    "@jx3box/jx3box-editor": "^0.1.4",
+    "@jx3box/jx3box-editor": "^0.1.7",
     "element-ui": "^2.13.0",
     "lodash": "^4.17.15",
     "vue": "^2.6.11",
