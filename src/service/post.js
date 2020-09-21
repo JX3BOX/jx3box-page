@@ -13,4 +13,19 @@ function getPost(pid, vm) {
     });
 }
 
-export { getPost };
+function getPosts(params, vm) {
+    let query = {
+        type: "macro",
+    };
+    if (params) {
+        query = Object.assign(query, params);
+    }
+
+    return $.get(API_LIST, {
+        params: query,
+    }).catch((err) => {
+        failCallback(err, vm);
+    });
+}
+
+export { getPost ,getPosts};
