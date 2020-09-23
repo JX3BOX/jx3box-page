@@ -1,0 +1,9 @@
+.github
+node_modules
+public
+.env
+.gitignore
+.npmignore
+package-lock.json
+setting.json
+vue.config.js

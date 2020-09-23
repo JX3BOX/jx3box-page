@@ -32,7 +32,7 @@
         <el-pagination
             class="m-archive-pages"
             background
-            layout="total, prev, pager, next"
+            layout="total, prev, pager, next,jumper"
             :hide-on-single-page="true"
             :page-size="perPage"
             :total="totalRecords"
@@ -48,7 +48,7 @@ export default {
     props: ["data", "total", "per", "pages", "page"],
     data: function() {
         return {
-            currentPage : this.page || 1
+            currentPage: this.page || 1,
         };
     },
     computed: {
@@ -70,16 +70,16 @@ export default {
     },
     methods: {
         appendPage: function() {
-            this.$emit("appendPage",++this.currentPage);
+            this.$emit("appendPage", ++this.currentPage);
         },
         changePage: function(i) {
-            this.$emit("changePage",i);
+            this.$emit("changePage", i);
         },
     },
-    watch : {
-        page : function (page){
-            this.currentPage = page
-        }
+    watch: {
+        page: function(page) {
+            this.currentPage = page;
+        },
     },
     mounted: function() {},
     components: {},
