@@ -1,6 +1,6 @@
 {
   "name": "@jx3box/jx3box-page",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -8,8 +8,8 @@
     "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common@latest @jx3box/jx3box-common-ui@latest @jx3box/jx3box-editor@latest @jx3box/jx3box-comment-ui@latest"
   },
   "dependencies": {
-    "@jx3box/jx3box-comment-ui": "^1.2.8",
-    "@jx3box/jx3box-common": "^5.2.9",
+    "@jx3box/jx3box-comment-ui": "^1.2.9",
+    "@jx3box/jx3box-common": "^5.3.2",
     "@jx3box/jx3box-editor": "^0.2.1",
     "element-ui": "^2.13.0",
     "lodash": "^4.17.15",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@babel/compat-data": "^7.10.1",
-    "@jx3box/jx3box-common-ui": "^2.6.7",
+    "@jx3box/jx3box-common-ui": "^2.7.0",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-plugin-router": "^4.0.0",
