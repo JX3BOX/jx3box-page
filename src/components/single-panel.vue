@@ -6,7 +6,7 @@
             <Sharing class="u-fn" :title="title" :pic="banner"/>
         </div>
         <div class="u-btngroup">
-            <Fav class="u-fav"/>
+            <Fav class="u-fav" post-type="post.post_type" post-id="post.ID"/>
             <Adminbutton class="u-admin" size="mini"/>
         </div>
     </div>
@@ -16,10 +16,8 @@
     export default {
         name : 'single-panel',
         props:['post','author'],
-        data : function(){
-            return {
-                
-            }
+        data() {
+            return {}
         },
         computed:{
             title: function() {
@@ -33,7 +31,7 @@
             }
         },
         methods:{},
-        mounted:function(){},
+        mounted() {},
         components : {
         }
     }
