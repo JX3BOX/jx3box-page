@@ -6,7 +6,7 @@
             <Sharing class="u-fn" :title="title" :pic="banner"/>
         </div>
         <div class="u-btngroup">
-            <Fav class="u-fav" post-type="post.post_type" post-id="post.ID"/>
+            <Fav class="u-fav" :post-type="post.post_type" :post-id="post.ID"/>
             <Adminbutton class="u-admin" size="mini"/>
         </div>
     </div>
