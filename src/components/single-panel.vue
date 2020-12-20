@@ -7,6 +7,7 @@
         </div>
         <div class="u-btngroup">
             <Fav class="u-fav" :post-type="post.post_type" :post-id="post.ID"/>
+            <Like class="u-like" :post-type="post.post_type" :post-id="post.ID"/>
             <Adminbutton class="u-admin" size="mini"/>
         </div>
     </div>
