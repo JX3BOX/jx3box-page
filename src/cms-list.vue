@@ -74,6 +74,11 @@ export default {
         },
         changePage: function(i) {
             this.$emit("changePage", i);
+            this.$router.push({
+                query : {
+                    page : i
+                }
+            })
         },
     },
     watch: {
