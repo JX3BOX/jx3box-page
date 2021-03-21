@@ -14,3 +14,10 @@ import Single from '@jx3box/jx3box/single/src/Single.vue'
 ```html
 <Single :post="post_data" :author="author_data" :stat="stat_data"></Single>
 ```
+
+## Dev
+
+```
+$ open http://localhost:8080/list
+$ open http://localhost:8080/single
+```

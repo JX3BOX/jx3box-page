@@ -24,45 +24,43 @@
                 @appendPage="appendPage"
                 @changePage="changePage"
             >
-                <template slot="filter">
+                <!-- 搜索 -->
+                <div class="m-archive-search" slot="search-before">
                     <a
                         :href="publish_link"
-                        class="u-publish el-button el-button--primary el-button--small"
+                        class="u-publish el-button el-button--primary "
                     >
                         + 发布作品
                     </a>
-                    <!-- 角标过滤 -->
-                    <markBy @filter="filter"></markBy>
-                    <!-- 排序过滤 -->
-                    <orderBy @filter="filter"></orderBy>
-                </template>
-
-                <!-- 搜索 -->
-                <div class="m-archive-search" slot="search-before">
                     <el-input
-                        placeholder="请输入关键词"
+                        placeholder="请输入搜索内容"
                         v-model="search"
                         class="input-with-select"
-                        @change="loadPosts"
                     >
-                        <el-select
-                            v-model="searchType"
-                            slot="prepend"
-                            placeholder="请选择"
-                            @change="loadPosts"
-                        >
-                            <el-option label="标题" value="title"></el-option>
-                            <el-option
-                                label="作者"
-                                value="authorname"
-                            ></el-option>
-                        </el-select>
+                        <span slot="prepend">关键词</span>
+                        <!-- <el-select
+                        v-model="searchType"
+                        slot="prepend"
+                        placeholder="请选择"
+                    >
+                        <el-option label="标题" value="title"></el-option>
+                        <el-option label="作者" value="authorname"></el-option>
+                    </el-select> -->
                         <el-button
                             slot="append"
                             icon="el-icon-search"
                         ></el-button>
                     </el-input>
                 </div>
+
+                <template slot="filter">
+                    <!-- 版本过滤 -->
+                    <clientBy @filter="filter" type="std"></clientBy>
+                    <!-- 角标过滤 -->
+                    <markBy @filter="filter"></markBy>
+                    <!-- 排序过滤 -->
+                    <orderBy @filter="filter"></orderBy>
+                </template>
 
                 <!-- 列表 -->
                 <div class="m-archive-list" v-if="data.length">
@@ -111,6 +109,7 @@
                                     <i
                                         v-for="mark in item.post.mark"
                                         class="u-mark"
+                                        :class="mark | markcls"
                                         :key="mark"
                                         >{{ mark | showMark }}</i
                                     >
@@ -158,25 +157,50 @@
 <script>
 import List from "../src/cms-list.vue";
 import { getPosts } from "../src/service/post";
+import {
+    showAvatar,
+    authorLink,
+    showBanner,
+    publishLink,
+    buildTarget,
+    getAppType,
+} from "@jx3box/jx3box-common/js/utils";
+import listbox from '../src/cms-list.vue'
 export default {
     name: "App",
     props: [],
     data: function() {
         return {
-            data: [],
+            loading: false, //加载状态
+
+            data: [], //数据列表
+            page: 1, //当前页数
+            total: 1, //总条目数
+            pages: 1, //总页数
+            per: 10, //每页条目
+            appendMode: false, //追加模式
+
+            search: "",
+            searchType: "title",
+
+            order: "", //排序模式
+            mark: "", //筛选模式
+            client: "", //版本选择
         };
     },
     computed: {
         subtype: function() {
-            return this.$store.state.subtype;
+            // return this.$store.state.subtype;
+            return this.$route.params.subtype;
         },
         params: function() {
             let params = {
                 per: this.per,
                 subtype: this.subtype,
+                page: ~~this.page || 1,
             };
             if (this.search) {
-                params[this.searchType] = this.search;
+                params.search = this.search;
             }
             if (this.order) {
                 params.order = this.order;
@@ -185,6 +209,16 @@ export default {
                 params.mark = this.mark;
             }
             return params;
+        },
+        target: function() {
+            return buildTarget();
+        },
+        // 根据栏目定义
+        defaultBanner: function() {
+            return __imgPath + "image/banner/null.png";
+        },
+        publish_link: function(val) {
+            return publishLink("bbs");
         },
     },
     methods: {
@@ -205,10 +239,23 @@ export default {
                     this.loading = false;
                 });
         },
+        changePage: function(i) {
+            this.appendMode = false;
+            this.page = i;
+            window.scrollTo(0, 0);
+        },
+        appendPage: function(i) {
+            this.appendMode = true;
+            this.page = i;
+        },
+        filter: function(o) {
+            this.appendMode = false;
+            this[o["type"]] = o["val"];
+        },
     },
     created: function() {},
     components: {
-        // List,
+        listbox
     },
 };
 </script>

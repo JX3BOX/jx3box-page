@@ -10,13 +10,13 @@ module.exports = {
         single : {
             title : 'CMS单页',
             entry:'demo/single.js',
-            template : 'public/index.html',
+            template : 'public/single/index.html',
             filename:'index.html',
         },
         list : {
             title : 'CMS列表页',
             entry:'demo/list.js',
-            template : 'public/index.html',
+            template : 'public/list/index.html',
             filename:'list/index.html',
         },
     },
