@@ -3,43 +3,44 @@
         <div class="u-minigroup">
             <Print class="u-fn" :title="title" :authorID="authorID" />
             <QRcode class="u-fn" />
-            <Sharing class="u-fn" :title="title" :pic="banner" />
+            <Sharing class="u-fn" :title="title" :pic="banner"/>
         </div>
         <div class="u-btngroup">
-            <Fav class="u-fav" :post-type="post.post_type" :post-id="post.ID" />
-            <Like class="u-like" :post-type="post.post_type" :post-id="post.ID" />
-            <Adminbutton class="u-admin" size="mini" />
+            <Fav class="u-fav" :postType="post.post_type" :postId="post.ID"/>
+            <Like class="u-like" :postType="post.post_type" :postId="post.ID"/>
+            <Adminbutton class="u-admin" size="mini"/>
         </div>
     </div>
 </template>
 
 <script>
-import Adminbutton from "@jx3box/jx3box-common-ui/src/bread/Adminbutton.vue";
-export default {
-    name: "single-panel",
-    props: ["post"],
-    data() {
-        return {};
-    },
-    computed: {
-        title: function () {
-            return _.get(this.post, "post_title") || "无标题";
+import Adminbutton from '@jx3box/jx3box-common-ui/src/bread/Adminbutton.vue'
+    export default {
+        name : 'single-panel',
+        props:['post'],
+        data() {
+            return {}
         },
-        authorID: function () {
-            return _.get(this.post, "post_author");
+        computed:{
+            title: function() {
+                return _.get(this.post, "post_title") || "无标题";
+            },
+            authorID : function (){
+                return _.get(this.post, "post_author")
+            },
+            banner : function (){
+                return _.get(this.post, "post_banner") || "";
+            }
         },
-        banner: function () {
-            return _.get(this.post, "post_banner") || "";
+        methods:{},
+        mounted() {
         },
-    },
-    methods: {},
-    mounted() {},
-    components: {
-        Adminbutton,
-    },
-};
+        components : {
+            Adminbutton
+        }
+    }
 </script>
 
 <style scoped lang="less">
-@import "../assets/css/single-panel.less";
+    @import '../assets/css/single-panel.less';
 </style>
