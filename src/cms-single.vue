@@ -1,8 +1,7 @@
 <template>
     <div class="m-single-box">
-        
         <!-- 头部 -->
-        <single-header :post="post" :author="author" :stat="stat">
+        <single-header :post="post" :stat="stat">
             <slot name="single-header"></slot>
         </single-header>
 
@@ -15,20 +14,20 @@
         <div class="m-single-post">
             <el-divider content-position="left">JX3BOX</el-divider>
             <div class="m-single-content">
-                <Article :content="content" :directorybox="directorybox"/>
+                <Article :content="content" :directorybox="directorybox" />
             </div>
         </div>
 
         <!-- 文章后 -->
         <div class="m-single-append">
-            <single-panel :post="post" :author="author"></single-panel>
+            <single-panel :post="post"></single-panel>
             <slot name="single-append"></slot>
         </div>
 
         <!-- 评论 -->
         <div class="m-single-comment" v-if="id">
             <el-divider content-position="left">评论</el-divider>
-            <Comment :id="id" category="post"/>
+            <Comment :id="id" category="post" />
         </div>
 
         <!-- 底部 -->
@@ -41,46 +40,43 @@
 <script>
 import _ from "lodash";
 
-import SingleHeader from './components/single-header.vue';
-import Article from '@jx3box/jx3box-editor/src/Article.vue'
-import SinglePanel from './components/single-panel.vue'
-import Comment from "@jx3box/jx3box-comment-ui/src/Comment.vue"
+import SingleHeader from "./components/single-header.vue";
+import Article from "@jx3box/jx3box-editor/src/Article.vue";
+import SinglePanel from "./components/single-panel.vue";
+import Comment from "@jx3box/jx3box-comment-ui/src/Comment.vue";
 
 export default {
     name: "cms-single",
-    props: ['post','author','stat','directory'],
-    data: function() {
+    props: ["post", "stat", "directory"],
+    data: function () {
         return {
-            directorybox : this.directory || '#directory',
+            directorybox: this.directory || "#directory",
         };
     },
     computed: {
         data() {
-            return `${this.post},${this.author},${this.stat}`;
+            return `${this.post},${this.stat}`;
         },
-        content : function (){
-            return _.get(this.post,'post_content') || ''
+        content: function () {
+            return _.get(this.post, "post_content") || "";
         },
-        id : function (){
-            return ~~_.get(this.post, "ID") || 0
+        id: function () {
+            return ~~_.get(this.post, "ID") || 0;
         },
     },
-    watch : {
-        data(){
-            this.$forceUpdate()
-        }
+    watch: {
+        data() {
+            this.$forceUpdate();
+        },
     },
-    methods: {
-        
-    },
+    methods: {},
     filters: {},
-    created: function() {
-    },
+    created: function () {},
     components: {
         Article,
         Comment,
-        'single-header':SingleHeader,
-        'single-panel':SinglePanel,
+        "single-header": SingleHeader,
+        "single-panel": SinglePanel,
     },
 };
 </script>

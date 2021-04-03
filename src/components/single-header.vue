@@ -1,21 +1,27 @@
 <template>
     <header class="m-single-header">
-
         <!-- 标题 -->
         <div class="m-single-title">
             <a class="u-title u-sub-block" :href="url" :title="title">
-                <i v-if="isOriginal" class="u-original">原创</i> 
-                <img v-if="isPrivate" class="u-private" svg-inline src="../assets/img/single/lock.svg" title="仅自己可见"/>
+                <i v-if="isOriginal" class="u-original">原创</i>
+                <img
+                    v-if="isPrivate"
+                    class="u-private"
+                    svg-inline
+                    src="../assets/img/single/lock.svg"
+                    title="仅自己可见"
+                />
                 <span class="u-title-text">{{ title }}</span>
             </a>
         </div>
 
         <!-- 信息 -->
         <div class="m-single-info">
-
             <!-- 用户名 -->
             <div class="u-author u-sub-block">
-                <i class="u-author-icon"><img svg-inline src="../assets/img/single/author.svg"/></i>
+                <i class="u-author-icon">
+                    <img svg-inline src="../assets/img/single/author.svg" />
+                </i>
                 <a class="u-name" :href="author_link">{{ author_name }}</a>
             </div>
 
@@ -25,18 +31,22 @@
                 <em class="u-label">{{meta_key}}</em>
                 <span class="u-value">{{meta_value}}</span>
             </div>
-            </template> -->
+            </template>-->
             <slot></slot>
 
             <!-- 发布日期 -->
             <span class="u-podate u-sub-block" title="发布日期">
-                <i class="u-icon-podate"><img svg-inline src="../assets/img/single/podate.svg"/></i>
+                <i class="u-icon-podate">
+                    <img svg-inline src="../assets/img/single/podate.svg" />
+                </i>
                 <time>{{ post_date }}</time>
             </span>
 
             <!-- 最后更新 -->
             <span class="u-modate u-sub-block" title="最后更新">
-                <i class="u-icon-modate"><img svg-inline src="../assets/img/single/modate.svg"/></i>
+                <i class="u-icon-modate">
+                    <img svg-inline src="../assets/img/single/modate.svg" />
+                </i>
                 <time>{{ update_date }}</time>
             </span>
 
@@ -52,66 +62,65 @@
                 <span>编辑</span>
             </a>
         </div>
-
     </header>
 </template>
 
 <script>
-import _ from 'lodash'
-import {__Root} from '@jx3box/jx3box-common/data/jx3box.json'
+import _ from "lodash";
+import { __Root } from "@jx3box/jx3box-common/data/jx3box.json";
 import dateFormat from "../utils/dateFormat";
-import { editLink,authorLink } from "@jx3box/jx3box-common/js/utils.js";
+import { editLink, authorLink } from "@jx3box/jx3box-common/js/utils.js";
 import User from "@jx3box/jx3box-common/js/user.js";
 export default {
     name: "single-header",
-    props: ['post','author','stat'],
-    data: function() {
+    props: ["post", "stat"],
+    data: function () {
         return {};
     },
     computed: {
-        url: function() {
+        url: function () {
             return location.href;
         },
-        isOriginal:function (){
-            return !!~~_.get(this.post, "original")
+        isOriginal: function () {
+            return !!~~_.get(this.post, "original");
         },
-        isPrivate : function (){
-            let status = _.get(this.post, "post_status")
-            return status == 'draft' || status == 'pending'
+        isPrivate: function () {
+            let status = _.get(this.post, "post_status");
+            return status == "draft" || status == "pending";
         },
-        title: function() {
+        title: function () {
             return _.get(this.post, "post_title") || "无标题";
         },
-        author_link: function() {
-            return authorLink(_.get(this.author, "uid"))
+        author_link: function () {
+            return authorLink(this.post.post_author);
         },
-        author_name: function() {
-            return _.get(this.author, "name") || "匿名";
+        author_name: function () {
+            return this.post.author || "匿名";
         },
-        post_date: function() {
+        post_date: function () {
             return dateFormat(new Date(_.get(this.post, "post_date")));
         },
-        update_date: function() {
+        update_date: function () {
             return dateFormat(new Date(_.get(this.post, "post_modified")));
         },
-        views : function (){
+        views: function () {
             return _.get(this.stat, "views") || "-";
         },
-        edit_link: function() {
+        edit_link: function () {
             return editLink(
                 _.get(this.post, "post_type"),
                 _.get(this.post, "ID")
             );
         },
-        canEdit: function() {
+        canEdit: function () {
             return (
                 _.get(this.post, "post_author") == User.getInfo().uid ||
-                User.getInfo().group > 60
-            )
-        }
+                User.isEditor()
+            );
+        },
     },
     methods: {},
-    mounted: function() {},
+    mounted: function () {},
 };
 </script>
 
