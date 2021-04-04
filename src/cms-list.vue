@@ -18,16 +18,14 @@
             type="info"
             center
             show-icon
-        >
-        </el-alert>
+        ></el-alert>
         <!-- 下一页 -->
         <el-button
             class="m-archive-more"
             :class="{ show: hasNextPage }"
             type="primary"
             @click="appendPage"
-            >加载更多</el-button
-        >
+        >加载更多</el-button>
         <!-- 分页 -->
         <el-pagination
             class="m-archive-pages"
@@ -38,55 +36,50 @@
             :total="totalRecords"
             :current-page.sync="currentPage"
             @current-change="changePage"
-        >
-        </el-pagination>
+        ></el-pagination>
     </div>
 </template>
 <script>
 export default {
     name: "cms-list",
     props: ["data", "total", "per", "pages", "page"],
-    data: function() {
+    data: function () {
         return {
             currentPage: this.page || 1,
         };
     },
     computed: {
-        list: function() {
+        list: function () {
             return this.data;
         },
-        totalRecords: function() {
+        totalRecords: function () {
             return this.total;
         },
-        totalPages: function() {
+        totalPages: function () {
             return this.pages;
         },
-        perPage: function() {
+        perPage: function () {
             return this.per;
         },
-        hasNextPage: function() {
+        hasNextPage: function () {
             return this.totalRecords > 1 && this.currentPage < this.totalPages;
         },
     },
     methods: {
-        appendPage: function() {
+        appendPage: function () {
             this.$emit("appendPage", ++this.currentPage);
         },
-        changePage: function(i) {
+        changePage: function (i) {
             this.$emit("changePage", i);
-            this.$router.push({
-                query : {
-                    page : i
-                }
-            })
+            this.$route.query.page = i
         },
     },
     watch: {
-        page: function(page) {
+        page: function (page) {
             this.currentPage = page;
         },
     },
-    mounted: function() {},
+    mounted: function () {},
     components: {},
 };
 </script>
