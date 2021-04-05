@@ -95,7 +95,7 @@ export default {
             return authorLink(this.post.post_author);
         },
         author_name: function () {
-            return this.post.author_info.display_name || "匿名";
+            return this.post.author || "匿名";
         },
         post_date: function () {
             return dateFormat(new Date(_.get(this.post, "post_date")));
