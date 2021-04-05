@@ -15,7 +15,7 @@
             <Nav />
         </LeftSidebar>
         <Main :withoutRight="false">
-            <Single :post="post_data" :author="author_data" :stat="stat_data"/>
+            <Single :post="post_data" :stat="stat_data" />
             <RightSidebar></RightSidebar>
             <Footer></Footer>
         </Main>
@@ -25,7 +25,6 @@
 <script>
 import Single from "../src/cms-single.vue";
 import { getPost } from "../src/service/post";
-import { getStat, postStat } from "../src/service/stat.js";
 import { getRewrite } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "App",
@@ -36,7 +35,7 @@ export default {
             post_data: "",
             author_data: "",
             stat_data: "",
-            loading : false
+            loading: false,
         };
     },
     computed: {},
@@ -47,17 +46,11 @@ export default {
             this.loading = true;
             getPost(this.id, this)
                 .then((res) => {
-                    this.post_data = res.data.data.post || {};
-                    this.author_data = res.data.data.author || {};
+                    this.post_data = res.data.data || {};
                 })
                 .finally(() => {
                     this.loading = false;
                 });
-
-            getStat(this.id).then((data) => {
-                if (data) this.stat = data;
-            });
-            postStat(this.id);
         }
     },
     components: {

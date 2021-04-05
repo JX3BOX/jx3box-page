@@ -1,31 +1,28 @@
-import { $ } from "./axios";
-import { __server } from "@jx3box/jx3box-common/data/jx3box.json";
-const API_SINGLE = "post/find";
-import failCallback from "../utils/fail";
+import { $cms } from "@jx3box/jx3box-common/js/https";
 
-function getPost(pid, vm) {
-    return $.get(API_SINGLE, {
-        params: {
-            id: pid,
-        },
-    }).catch((err) => {
-        failCallback(err, vm);
+function getMyPost(params) {
+    return $cms().get("/api/cms/posts/my", {
+        params: params,
     });
 }
 
-function getPosts(params, vm) {
+function getPosts(params) {
     let query = {
-        type: "macro",
+        type: "bbs",
     };
     if (params) {
         query = Object.assign(query, params);
     }
-
-    return $.get(API_LIST, {
+    return $cms().get("/api/cms/posts", {
         params: query,
-    }).catch((err) => {
-        failCallback(err, vm);
     });
 }
+function getPost(id) {
+    return $cms().get(`/api/cms/post/${id}`);
+}
 
-export { getPost ,getPosts};
+function getMyPostCount() {
+    return $cms().get("/api/cms/posts/user/my/count");
+}
+
+export { getPosts, getPost, getMyPostCount, getMyPost };

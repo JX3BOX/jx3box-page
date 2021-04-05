@@ -4,13 +4,10 @@
         <div class="m-single-title">
             <a class="u-title u-sub-block" :href="url" :title="title">
                 <i v-if="isOriginal" class="u-original">原创</i>
-                <img
-                    v-if="isPrivate"
-                    class="u-private"
-                    svg-inline
-                    src="../assets/img/single/lock.svg"
-                    title="仅自己可见"
-                />
+                <i class="u-private" v-if="post.post_status != 'publish'">
+                    <i class="el-icon-lock" v-if="post.post_status == 'draft'" style="color:#fb9b24"></i>
+                    <i class="el-icon-delete" v-if="post.post_status == 'dustbin'" style="color:#c00"></i>
+                </i>
                 <span class="u-title-text">{{ title }}</span>
             </a>
         </div>
@@ -83,10 +80,6 @@ export default {
         },
         isOriginal: function () {
             return !!~~_.get(this.post, "original");
-        },
-        isPrivate: function () {
-            let status = _.get(this.post, "post_status");
-            return status == "draft" || status == "pending";
         },
         title: function () {
             return _.get(this.post, "post_title") || "无标题";
