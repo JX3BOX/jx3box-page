@@ -86,7 +86,6 @@ export default {
     },
     filters: {},
     created: function () {
-        document.title = this.title
     },
     components: {
         Article,
