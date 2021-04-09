@@ -4,8 +4,8 @@
         <div class="m-single-title">
             <a class="u-title u-sub-block" :href="url" :title="title">
                 <i v-if="isOriginal" class="u-original">原创</i>
-                <i class="u-private" v-if="post.post_status != 'publish'">
-                    <i class="el-icon-lock" v-if="post.post_status == 'draft'" style="color:#fb9b24"></i>
+                <i class="u-private">
+                    <i class="el-icon-lock" v-if="post.post_status == 'draft' || ~~post.visible" style="color:#fb9b24"></i>
                     <i class="el-icon-delete" v-if="post.post_status == 'dustbin'" style="color:#c00"></i>
                 </i>
                 <span class="u-title-text">{{ title }}</span>
