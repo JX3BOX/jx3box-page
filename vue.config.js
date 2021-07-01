@@ -24,9 +24,15 @@ module.exports = {
     // ❤️ Porxy ~
     devServer: {
         proxy: {
+            "/api/vip": {
+                "target": "https://pay.jx3box.com",
+            },
+            "/api/comment/": {
+                "target": "https://next2.jx3box.com",
+            },
             "/api": {
                 "target": process.env["DEV_SERVER"] == "true" ? "http://localhost:5120" : "https://cms.jx3box.com",
-            }
+            },
         }
     },
 
