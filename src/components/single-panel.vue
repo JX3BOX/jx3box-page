@@ -36,8 +36,8 @@ export default {
             return {
                 title : this.title,
                 banner : this.banner,
-                desc : `作者：${this.post?.author || '匿名'}，来自：JX3BOX魔盒`,
-                summary : '一站式剑三工具资源站'
+                desc : "",
+                summary : `作者：${this.post?.author || '匿名'}，来自：JX3BOX魔盒`
             }
         }
     },
