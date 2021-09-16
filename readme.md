@@ -19,5 +19,5 @@ import Single from '@jx3box/jx3box/single/src/Single.vue'
 
 ```
 $ open http://localhost:8080/list
-$ open http://localhost:8080/single
+$ open http://localhost:8080/single/$id
 ```

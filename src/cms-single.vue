@@ -23,7 +23,6 @@
 
         <!-- 文章后 -->
         <div class="m-single-append">
-            <single-panel :post="post"></single-panel>
             <slot name="single-append"></slot>
         </div>
 
@@ -46,7 +45,6 @@ import _ from "lodash";
 
 import SingleHeader from "./components/single-header.vue";
 import Article from "@jx3box/jx3box-editor/src/Article.vue";
-import SinglePanel from "./components/single-panel.vue";
 import Comment from "@jx3box/jx3box-comment-ui/src/Comment.vue";
 import {__visibleMap} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
@@ -91,7 +89,6 @@ export default {
         Article,
         Comment,
         "single-header": SingleHeader,
-        "single-panel": SinglePanel,
     },
 };
 </script>
