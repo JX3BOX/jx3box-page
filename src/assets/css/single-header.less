@@ -1,21 +1,21 @@
 .m-single-header {
-    padding-top:20px;
-    padding-bottom:20px;
-    padding-right:280px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 280px;
     .pr;
     .u-sub-block {
         .dbi;
         .y(top);
     }
 }
-@media screen and (max-width:@phone){
-    .m-single-header{
-        padding-right:0;
+@media screen and (max-width: @phone) {
+    .m-single-header {
+        padding-right: 0;
     }
 }
-@media print{
-    .m-single-header{
-        padding-right:0;
+@media print {
+    .m-single-header {
+        padding-right: 0;
     }
 }
 
@@ -24,11 +24,11 @@
     padding: 1px 0;
 
     .u-title {
-        color:@color;
-        &:hover{
-            color:@primary;
-        }
-        letter-spacing:0.5px;
+        color: @color;
+        // &:hover {
+        //     color: @primary;
+        // }
+        letter-spacing: 0.5px;
         font-weight: 300;
         .db;
         .nobreak;
@@ -36,46 +36,80 @@
     .u-author {
         .pr;
     }
-    .u-original{
-        background-color:#6f42c1;
-        color:#fff;
-        .fz(14px,20px);
-        font-style:normal;
-        font-weight:normal;
-        padding:2px 5px;
+
+    .u-original {
+        background-color: #6f42c1;
+        color: #fff;
+        .fz(14px, 20px);
+        font-style: normal;
+        font-weight: normal;
+        padding: 2px 5px;
         .mr(5px);
+        .fl;
     }
-    .u-private{
+    
+    .u-private {
         .y(-2px);
-        margin-right:5px;
-        color:#111;
+        margin-right: 5px;
+        color: #111;
     }
+
 }
-@media screen and (max-width:@phone){
-    .m-single-title{
-        .fz(1rem,1.8);
-        .u-title{
+@media screen and (max-width: @phone) {
+    .m-single-title {
+        .fz(1rem, 1.8);
+        .u-title {
             word-break: break-all;
             white-space: normal;
             font-weight: normal;
         }
     }
 }
-@media print{
-    .m-single-title{.x;}
+@media print {
+    .m-single-title {
+        .x;
+    }
 }
 
 .m-single-info {
     margin-top: 10px;
     .clearfix;
     .fz(12px, 20px);
-    color:#666;
+    color: #666;
 
-    *{
+    @origin: #0eb7ce;
+    @std: #f0b400;
+    @all: #a26ef7;
+
+    .u-client {
+        // .fl;
+        font-style: normal;
+        .fz(12px);
+        padding: 0px 5px;
+        .r(3px);
+        // .mr(10px);
+
+        &.std {
+            border: 1px solid @std;
+            color: @std;
+        }
+
+        &.origin {
+            border: 1px solid @origin;
+            color: @origin;
+        }
+
+        &.all {
+            border: 1px solid @all;
+            color: @all;
+        }
+    }
+
+    * {
         .dbi;
     }
 
-    svg{
+    svg {
         fill: #666;
         .size(16px);
         .y;
@@ -87,12 +121,13 @@
         .fl;
     }
 
-    .u-author{
+    .u-author {
         a:hover {
             box-shadow: 0 1px 0 @color-link;
         }
-        i{
-            .pr;top:-2px;
+        i {
+            .pr;
+            top: -2px;
         }
     }
 
@@ -103,21 +138,23 @@
         .r(2px);
         font-style: normal;
     }
-    .u-value {}
+    .u-value {
+    }
 
-    .u-views{
+    .u-views {
         i {
             .fz(15px);
             .y;
         }
     }
 
-    .u-edit{
-        i{
-            &:before{
-                font-size:16px;
+    .u-edit {
+        i {
+            &:before {
+                font-size: 16px;
             }
-            .pr;top:2px;
+            .pr;
+            top: 2px;
             .mr(3px);
         }
         &:hover {
@@ -125,25 +162,33 @@
         }
     }
 }
-@media screen and (max-width:@ipad){
-    .m-single-info{
-        .u-meta{
+@media screen and (max-width: @ipad) {
+    .m-single-info {
+        .u-meta {
             .none;
         }
     }
 }
 @media screen and (max-width: @phone) {
     .m-single-info {
-        .u-podate{
+        .u-podate {
             .none;
         }
     }
 }
-@media print{
-    .m-single-info{
-        .u-meta,.u-views,.u-edit{.none;}
+@media print {
+    .m-single-info {
+        .u-meta,
+        .u-views,
+        .u-edit {
+            .none;
+        }
         .x;
-        .u-sub-block{float:none;}
-        .u-name{color:@color;}
+        .u-sub-block {
+            float: none;
+        }
+        .u-name {
+            color: @color;
+        }
     }
 }

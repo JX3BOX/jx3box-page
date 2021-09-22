@@ -2,18 +2,27 @@
     <header class="m-single-header">
         <!-- 标题 -->
         <div class="m-single-title">
-            <a class="u-title u-sub-block" :href="url" :title="title">
-                <i v-if="isOriginal" class="u-original">原创</i>
+            <span class="u-title u-sub-block" :href="url" :title="title">
+                <i class="u-original" v-if="isOriginal" >原创</i>
                 <i class="u-private">
-                    <i class="el-icon-lock" v-if="post.post_status == 'draft' || ~~post.visible" style="color:#fb9b24"></i>
-                    <i class="el-icon-delete" v-if="post.post_status == 'dustbin'" style="color:#c00"></i>
+                    <i
+                        class="el-icon-lock"
+                        v-if="post.post_status == 'draft' || ~~post.visible"
+                        style="color:#fb9b24"
+                    ></i>
+                    <i
+                        class="el-icon-delete"
+                        v-if="post.post_status == 'dustbin'"
+                        style="color:#c00"
+                    ></i>
                 </i>
                 <span class="u-title-text">{{ title }}</span>
-            </a>
+            </span>
         </div>
 
         <!-- 信息 -->
         <div class="m-single-info">
+            
             <!-- 用户名 -->
             <div class="u-author u-sub-block">
                 <i class="u-author-icon">
@@ -28,8 +37,14 @@
                 <em class="u-label">{{meta_key}}</em>
                 <span class="u-value">{{meta_value}}</span>
             </div>
-            </template>-->
+            </template> -->
             <slot></slot>
+
+            <!-- 客户端 -->
+            <div class="u-meta u-sub-block" >
+                <em class="u-label">适用客户端</em>
+                <span class="u-value u-client" :class="client">{{client | showClientLabel}}</span>
+            </div>
 
             <!-- 发布日期 -->
             <span class="u-podate u-sub-block" title="发布日期">
@@ -68,6 +83,11 @@ import { __Root } from "@jx3box/jx3box-common/data/jx3box.json";
 import dateFormat from "../utils/dateFormat";
 import { editLink, authorLink } from "@jx3box/jx3box-common/js/utils.js";
 import User from "@jx3box/jx3box-common/js/user.js";
+const client_map = {
+    std: "正式服",
+    origin: "怀旧服",
+    all: "双端",
+};
 export default {
     name: "single-header",
     props: ["post", "stat"],
@@ -111,9 +131,17 @@ export default {
                 User.isEditor()
             );
         },
+        client: function () {
+            return this.post.client || "std";
+        },
     },
     methods: {},
     mounted: function () {},
+    filters: {
+        showClientLabel: function (val) {
+            return client_map[val];
+        },
+    },
 };
 </script>
 
