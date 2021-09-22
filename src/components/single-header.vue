@@ -3,8 +3,8 @@
         <!-- 标题 -->
         <div class="m-single-title">
             <span class="u-title u-sub-block" :href="url" :title="title">
-                <i class="u-original" v-if="isOriginal" >原创</i>
-                <i class="u-private">
+                <i class="u-original" v-if="isOriginal">原创</i>
+                <i class="u-private" v-if="post.post_status != 'publish'">
                     <i
                         class="el-icon-lock"
                         v-if="post.post_status == 'draft' || ~~post.visible"
