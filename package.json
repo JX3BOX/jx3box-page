@@ -1,6 +1,6 @@
 {
   "name": "@jx3box/jx3box-page",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -8,10 +8,10 @@
     "update": "npm install --registry https://registry.npmjs.org @jx3box/jx3box-common@latest @jx3box/jx3box-common-ui@latest @jx3box/jx3box-editor@latest @jx3box/jx3box-comment-ui@latest"
   },
   "dependencies": {
-    "@jx3box/jx3box-comment-ui": "^1.6.4",
-    "@jx3box/jx3box-common": "^6.7.3",
-    "@jx3box/jx3box-common-ui": "^5.3.5",
-    "@jx3box/jx3box-editor": "^0.9.1",
+    "@jx3box/jx3box-comment-ui": "^1.6.5",
+    "@jx3box/jx3box-common": "^6.7.8",
+    "@jx3box/jx3box-common-ui": "^5.3.8",
+    "@jx3box/jx3box-editor": "^0.9.3",
     "axios": "^0.19.2",
     "core-js": "^3.4.3",
     "element-ui": "^2.13.0",

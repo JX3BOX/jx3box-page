@@ -7,7 +7,7 @@
                 <i class="u-private" v-if="post.post_status != 'publish'">
                     <i
                         class="el-icon-lock"
-                        v-if="post.post_status == 'draft' || ~~post.visible"
+                        v-if="post.post_status == 'draft' || post.post_status == 'pending' || ~~post.visible"
                         style="color:#fb9b24"
                     ></i>
                     <i
